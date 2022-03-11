@@ -26,6 +26,7 @@ from disentanglement_lib.data.ground_truth import dummy_data
 from disentanglement_lib.data.ground_truth import ground_truth_data as gtd
 from disentanglement_lib.data.ground_truth import named_data
 from disentanglement_lib.data.ground_truth import shapes3d
+from disentanglement_lib.data.ground_truth import mpi3d
 from disentanglement_lib.evaluation.abstract_reasoning import pgm_utils
 from disentanglement_lib.utils import resources
 from disentanglement_lib.visualize import visualize_util
@@ -46,6 +47,8 @@ def get_pgm_dataset(pgm_type=gin.REQUIRED):
     wrapped_data_set = Quantizer(ground_truth_data, [5, 6, 3, 3, 4, 4])
   elif isinstance(ground_truth_data, shapes3d.Shapes3D):
     wrapped_data_set = Quantizer(ground_truth_data, [10, 10, 10, 4, 4, 4])
+  elif isinstance(ground_truth_data, mpi3d.MPI3D):
+    wrapped_data_set = ground_truth_data
   elif isinstance(ground_truth_data, dummy_data.DummyData):
     wrapped_data_set = ground_truth_data
   else:
